@@ -2,10 +2,9 @@
   "private": true,
   "scripts": {
     "serve": "node build/check-npm.js && vue-cli-service serve",
-    "build": "node build/pre-build.js && vite build && node build/post-build.js",
-    "build:steam-development": "node build/pre-build.js && vite build --mode steam-development",
-    "build:steam-release": "node build/pre-build.js && vite build --mode steam-release",
-    "preview": "vite build && vite preview",
+    "build": "node build/pre-build.js && vue-cli-service build --mode master && node build/post-build.js",
+    "build:steam-development": "node build/pre-build.js && vue-cli-service build --mode steam-development",
+    "build:steam-release": "node build/pre-build.js && vue-cli-service build --mode steam-release",
     "lint": "eslint --ext .js,.vue --fix src",
     "deploy": "npm run build:release && gh-pages -d dist"
   },
