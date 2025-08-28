@@ -1,4 +1,5 @@
 // Temporarily aggregate tab components here until GameUI is migrated to SFC
+import AdvancedTab from "./cheats-advanced/AdvancedTab";
 import AlchemyTab from "./alchemy/AlchemyTab";
 import AntimatterDimensionsTab from "./antimatter-dimensions/AntimatterDimensionsTab";
 import AutobuyersTab from "./autobuyers/AutobuyersTab";
@@ -7,6 +8,7 @@ import BlackHoleTab from "./black-hole/BlackHoleTab";
 import BreakInfinityTab from "./break-infinity/BreakInfinityTab";
 import CelestialNavigationTab from "./celestial-navigation/CelestialNavigationTab";
 import ChallengeRecordsTab from "./challenge-records/ChallengeRecordsTab";
+import TemporalTab from "./cheats-temporal/TemporalTab";
 import EffarigTab from "./celestial-effarig/EffarigTab";
 import EnslavedTab from "./celestial-enslaved/EnslavedTab";
 import EternityChallengesTab from "./eternity-challenges/EternityChallengesTab";
@@ -84,7 +86,9 @@ const TabComponents = {
   AlchemyTab,
   CelestialNavigationTab,
   ShopTab,
-  MultiplierBreakdownTab
+  MultiplierBreakdownTab,
+  AdvancedTab,
+  TemporalTab,
 };
 
 export default TabComponents;

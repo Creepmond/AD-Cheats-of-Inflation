@@ -201,6 +201,7 @@ html {
   --color-reality: #4caf50;
   --color-reality-dark: #0ba00e;
   --color-celestials: #00bcd4;
+  --color-cheats: #ff8181;
   --color-prestige--accent: black;
 
   --color-teresa--accent: black;
@@ -752,6 +753,15 @@ button:focus {
 
 .o-tab-btn--celestial:hover {
   background: var(--color-celestials);
+}
+
+.o-tab-btn--cheats {
+  color: #ff8181;
+  border-color: #ff8181;
+}
+
+.o-tab-btn--cheats:hover {
+  background: #ff8181;
 }
 
 /* #endregion tab buttons */
