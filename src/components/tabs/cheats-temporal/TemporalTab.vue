@@ -1,63 +1,83 @@
 <script>
-import PrimaryToggleButton from "@/components/PrimaryToggleButton";
+import OpenModalHotkeysButton from "@/components/OpenModalHotkeysButton";
+import TemporalSkipButton from "@/components/tabs/cheats-temporal/TemporalSkipButton.vue";
 
 export default {
   name: "TemporalTab",
   components: {
-    PrimaryToggleButton,
+    OpenModalHotkeysButton,
+    TemporalSkipButton,
   },
-  data() {
-    return {
-
-    };
-  },
-  computed: {
-    
-  },
-  watch: {
-
-  },
-  methods: {
-    update() {
-
-    }
-  }
 };
 </script>
 
 <template>
-  <div class="l-options-tab">
-    <div class="l-options-grid">
-      <div class="l-options-grid__row">
-        <PrimaryToggleButton
-          class="o-primary-btn--option l-options-grid__button"
-          label="Hotkeys:"
-          on="Enabled"
-          off="Disabled"
+  <div class="l-cheats-temporal-tab">
+    <span class="l-temporal-introtext">
+      This is a tab dedicated to modifying real-time/true-time.
+    </span>
+    <div class="l-cheats-skip-grid">
+      <div class="l-cheats-skip-buttons">
+        <TemporalSkipButton 
+          label="Skip Hour"
+          onclick="
+            simulateTime(3600, false, true)
+            Modal.hideAll()
+          "
         />
-        <PrimaryToggleButton
-          class="o-primary-btn--option l-options-grid__button l-toggle-button"
-          label="Switch tabs on some events (e.g. entering challenges):"
+        <TemporalSkipButton 
+          label="Skip Day"
+          onclick="
+            simulateTime(3600 * 24, false, true)
+            Modal.hideAll()
+          "
         />
-      </div>
-      <div class="l-options-grid__row">
-        <PrimaryToggleButton
-          class="o-primary-btn--option l-options-grid__button"
-          label="Offline progress:"
+        <TemporalSkipButton 
+          label="Skip Month"
+          onclick="
+            simulateTime(3600 * 24 * 30, false, true)
+            Modal.hideAll()
+          "
         />
-        <div class="o-primary-btn o-primary-btn--option o-primary-btn--slider l-options-grid__button">
-        </div>
-        <PrimaryToggleButton
-          class="o-primary-btn--option l-options-grid__button"
-          label="Run suspended time as offline:"
+        <TemporalSkipButton 
+          label="Skip Year"
+          onclick="
+            simulateTime(3600 * 24 * 365, false, true)
+            Modal.hideAll()
+          "
         />
-      </div>
-      <div class="l-options-grid__row">
-        <div
-          class="o-primary-btn o-primary-btn--option o-primary-btn--slider l-options-grid__button"
-        >
-        </div>
       </div>
     </div>
+    <OpenModalHotkeysButton />
   </div>
-</template>
+</template>ks
+
+<style>
+.l-cheats-temporal-tab {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.l-cheats-skip-grid {
+  height: 130px;
+  width: 85vw;
+  max-width: 1050px;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.l-cheats-skip-buttons {
+  width: 85vw;
+  max-width: 1050px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.l-temporal-introtext {
+  font-size: 12px;
+  margin-top: 20px;
+}
+</style>

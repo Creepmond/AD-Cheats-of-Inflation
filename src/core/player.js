@@ -819,7 +819,7 @@ window.player = {
     exportedFileCount: 0,
     hideCompletedAchievementRows: false,
     glyphTextColors: true,
-    headerTextColored: false,
+    headerTextColored: true,
     showNewGlyphIcon: true,
     showUnequippedGlyphIcon: true,
     highContrastRarity: false,
