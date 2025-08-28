@@ -1079,10 +1079,10 @@ export function browserCheck() {
 
 export function init() {
   // eslint-disable-next-line no-console
-  console.log("🌌 Antimatter Dimensions: Reality Update 🌌");
+  console.log("dev.hardReset()");
   if (DEV) {
     // eslint-disable-next-line no-console
-    console.log("👨‍💻 Development Mode 👩‍💻");
+    console.log("Gosh you'll need that top command very frequently");
   }
   ElectronRuntime.initialize();
   SteamRuntime.initialize();

@@ -15,6 +15,10 @@ dev.hardReset = function() {
   GameStorage.hardReset();
 };
 
+dev.harshReset = function() {
+  GameStorage.hardReset('harsh');
+};
+
 dev.giveAllAchievements = function() {
   const allAchievements = Achievements.all.concat(SecretAchievements.all);
   for (const achievement of allAchievements) achievement.unlock();

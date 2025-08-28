@@ -13,7 +13,7 @@ export default {
   },
   computed: {
     willHardReset() {
-      return this.input === "Shrek is love, Shrek is life";
+      return this.input === "Shrek";
     },
     hasExtraNG() {
       return player.records.fullGameCompletions > 0;
@@ -45,11 +45,12 @@ export default {
       HARD RESET
     </template>
     <div class="c-modal-message__text">
-      Please confirm your desire to hard reset this save slot.
-      <span class="c-modal-hard-reset-danger">Deleting your save will not unlock anything secret.</span>
-      Type in "Shrek is love, Shrek is life" to confirm.
+      Please confirm your desire to reset this save slot. <br /> 
+      <span class="c-modal-hard-reset-danger">Deleting your save will not unlock anything secret.</span> <br /> 
+      Type in "Shrek" to confirm. <br />
+      This will wipe EVERYTHING on your save except for Options. <br />
+      To do that, manually perform "dev.harshReset()" on your console.
       <div class="c-modal-hard-reset-danger">
-        THIS WILL WIPE YOUR SAVE.
         <span v-if="hasExtraNG">
           <br>
           This will also remove any Glyph cosmetics you have unlocked from completing the game!
@@ -76,7 +77,7 @@ export default {
         Phrase confirmed - continuing will irreversibly delete your save!
       </div>
       <div v-else>
-        Type in the correct phrase to hard reset.
+        It's shortened because I know we'll both screw something up—very often at that too, no?
       </div>
     </div>
     <template #confirm-text>

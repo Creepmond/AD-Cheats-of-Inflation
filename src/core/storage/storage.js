@@ -5,6 +5,7 @@ import { devMigrations } from "./dev-migrations";
 import { migrations } from "./migrations";
 
 import { deepmergeAll } from "@/utility/deepmerge";
+import { Player } from "../player";
 
 export const BACKUP_SLOT_TYPE = {
   ONLINE: 0,
@@ -417,11 +418,12 @@ export const GameStorage = {
     return save;
   },
 
-  hardReset() {
-    this.loadPlayerObject(Player.defaultStart);
+  hardReset(harsh) {
+    harsh
+      ? this.loadPlayerObject(Player.defaultStart)
+      : this.loadPlayerObject("pDefaultExceptOpt");
     this.save(true);
-    Tab.dimensions.antimatter.show();
-    Cloud.resetTempState();
+    // Tab.dimensions.antimatter.show();
   },
 
   // eslint-disable-next-line complexity
@@ -429,12 +431,21 @@ export const GameStorage = {
     this.saved = 0;
 
     const checkString = this.checkPlayerObject(playerObject);
-    if (playerObject === Player.defaultStart || checkString !== "") {
-      if (DEV && checkString !== "") {
+    if (playerObject === Player.defaultStart || playerObject === "pDefaultExceptOpt" || checkString !== "") {
+      if (DEV && checkString !== "" && playerObject !== "pDefaultExceptOpt") {
         // eslint-disable-next-line no-console
         console.log(`Savefile was invalid and has been reset - ${checkString}`);
       }
-      player = deepmergeAll([{}, Player.defaultStart]);
+      
+      if (playerObject === "pDefaultExceptOpt") {
+        const pDefaultExceptOpt = Player.defaultStart;
+        pDefaultExceptOpt.options = player.options;
+
+        player = deepmergeAll([{}, pDefaultExceptOpt]);
+      } else if (playerObject === Player.defaultStart) {
+        player = deepmergeAll([{}, Player.defaultStart]);
+      }
+      
       player.records.gameCreatedTime = Date.now();
       player.lastUpdate = Date.now();
       if (DEV) {
@@ -500,6 +511,8 @@ export const GameStorage = {
     this.saves[this.currentSlot] = player;
     this.lastUpdateOnLoad = player.lastUpdate;
 
+    if (playerObject === "pDefaultExceptOpt") return;
+
     if (DEV) {
       guardFromNaNValues(player);
     }
@@ -525,6 +538,8 @@ export const GameStorage = {
     EventHub.dispatch(GAME_EVENT.GAME_LOAD);
     AutomatorBackend.initializeFromSave();
     Lazy.invalidateAll();
+
+    if (playerObject === Player.defaultStart) return;
 
     const rawDiff = Date.now() - player.lastUpdate;
     // We set offlineEnabled externally on importing or loading a backup; otherwise this is just a local load
