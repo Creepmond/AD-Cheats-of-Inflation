@@ -4,6 +4,7 @@ html {
   height: 100%;
   scrollbar-color: grey transparent;
   font-size: 62.5%;
+  touch-action: pan-x pan-y;
 }
 
 ::-webkit-scrollbar {
